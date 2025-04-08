@@ -1,0 +1,10 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ0YjA1NzA5MDFiZDUxODMxZDcxYjIiLCJpYXQiOjE3MTU3Nzc2ODN9.ckitilvBARUM3hg7KScb3KrAidjKz3_Wifj6ZXMhMpQ
+
+###
+# Get User Dashboard Stats
+GET {{ baseURL }}/dashboard/stats
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}

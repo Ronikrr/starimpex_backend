@@ -1,0 +1,46 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ0YjA1NzA5MDFiZDUxODMxZDcxYjIiLCJpYXQiOjE3MTgwODU0NTgsImV4cCI6MTcxODE3MTg1OH0.YtYP2jNs4du-DSi-f1m0gg4bQ1BfHQmWtS0zA5Ai3R8
+
+###
+# Get Self User
+GET {{ baseURL }}/self
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Update Self User [NOTE: don't pass empty data which are optional,will be handled from backend]
+# firstName : (REQ) first name of user (String)
+# lastName : (REQ) last name of user (String)
+# companyName : (REQ) company name (String)
+# address : (REQ) address (String)
+# state : (REQ) state name (String)
+# city : (REQ) city name (String)
+# country : (REQ) country name (String)
+# mobileNumber : (OPT) mobile number (String)
+# telephoneNumber : (OPT) telephone number (String)
+# messengerType : (OPT) messenger type (String) (enum: whatsapp/skype)
+# messengerIdNumber : (OPT) messenger id or number (String)
+# website : (OPT) website url (String)
+# notes : (OPT) additional notes provided by user (String)
+PUT {{ baseURL }}/update-details
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "firstName": "Khushbu",
+    "lastName": "Patel",
+    "companyName": "Khushbu Tech",
+    "address": "Bardoli",
+    "state": "Gujarat",
+    "city": "Bardoli",
+    "country": "India"
+}
+
+
+###
+# Change Password
+POST {{ baseURL }}/change-password
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}

@@ -1,0 +1,10 @@
+import { AuthRoute } from './auth.route';
+import { UserCartRoute } from './cart.route';
+import { DashboardRoute } from './dashboard.route';
+import { DiamondRoute } from './diamond.route';
+import { OrderRoute } from './order.route';
+import { PriceTrackerRoute } from './priceTracker.route';
+import { CustomerSupportRoute } from './support.route';
+import { UserRoute } from './user.route';
+declare const userRoutes: (AuthRoute | UserCartRoute | DashboardRoute | DiamondRoute | OrderRoute | PriceTrackerRoute | CustomerSupportRoute | UserRoute)[];
+export default userRoutes;

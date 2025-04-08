@@ -1,0 +1,78 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjMzNDI1NjFmZGUxODI5N2E0MDhiYzEiLCJpYXQiOjE3MTQ2NDUzMDl9.l_4K1ZSdpnu14tlQzn5tXjJZ4on3YCfKiDTbITr9rBE
+
+###
+# User Signup
+# firstName : (REQ) first name of user (String)
+# lastName : (REQ) last name of user (String)
+# companyName : (REQ) company name (String)
+# address : (REQ) address (String)
+# state : (REQ) state name (String)
+# city : (REQ) city name (String)
+# country : (REQ) country name (String)
+# mobileNumber : (OPT) mobile number (String)
+# telephoneNumber : (OPT) telephone number (String)
+# email : (REQ) email id of user (String)
+# messengerType : (OPT) messenger type (String) (enum: whatsapp/skype)
+# messengerIdNumber : (OPT) messenger id or number (String)
+# website : (OPT) website url (String)
+# password : (REQ) password provided by user (String)
+# notes : (OPT) additional notes provided by user (String)
+POST {{ baseURL }}/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "Khushbu",
+    "lastName": "Patel",
+    "companyName": "ABC",
+    "address": "abc",
+    "state": "Gujarat",
+    "city": "Bardoli",
+    "country": "India",
+    "email": "khushbupatel111.mnjtech@gmail.com",
+    "password": "test@1234"
+}
+
+###
+# User login
+# email: (REQ) email id of user (String) 
+# password: (REQ) password of user (String)
+POST {{ baseURL }}/auth/login
+Content-Type: application/json
+
+{
+    "email": "khushbupatel.mnjtech@gmail.com",
+    "password": "test@123"
+}
+
+###
+# User logout
+GET {{ baseURL }}/auth/logout
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Forgot password
+# email: (REQ) email id of user (String)
+POST {{ baseURL }}/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email": "khushbupatel.mnjtech@gmail.com"
+}
+
+###
+# Reset password
+# email: (REQ) email id of user (String)
+# hash: (REQ) hash value sent in the link (String)
+# password: (REQ) new password to be updated (String)
+POST {{ baseURL }}/auth/reset-password
+Content-Type: application/json
+
+{
+    "email": "khushbupatel.mnjtech@gmail.com",
+    "hash": "41d3ef26f7eaeb44b50086dc61eecaf1637c4e5efde8083f7c337647ba2e70d4",
+    "password": "test@123"
+}

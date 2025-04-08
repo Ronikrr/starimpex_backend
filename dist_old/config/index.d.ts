@@ -1,0 +1,10 @@
+export declare const CREDENTIALS: boolean;
+export declare const NODE_ENV: string, PORT: string, SECRET_KEY: string, LOG_FORMAT: string, LOG_DIR: string, ORIGIN: string;
+export declare const MONGODB_URI: string;
+export declare const ADMIN_USERNAME: string, ADMIN_PASSWORD: string;
+export declare const PAGE_LIMIT: number;
+export declare const SENDER_EMAIL_ID: string, SENDER_EMAIL_PASSWORD: string, MAIL_SERVICE: string, MAIL_HOST: string, MAIL_PORT: string, MAIL_SECURE: string, SENDER_NAME: string, COMPANY_ADDRESS: string, INFO_EMAIL: string, COMPANY_LOGO: string, SUPPORT_EMAIL: string;
+export declare const UPLOAD_DIAMOND_CRON_INTERVAL: string, UPLOAD_DIAMOND_LIMIT: string, FILE_STONE_NUMBER_PREFIX: string, MAITRI_STONE_NUMBER_PREFIX: string, MAITRI_AUTH_TOKEN: string, MAITRI_API_URL: string, ANJALI_STONE_NUMBER_PREFIX: string, ANJALI_SOURCE_API_URL: string, ANJALI_SOURCE_AUTH_TOKEN: string, ECOSTAR_STONE_NUMBER_PREFIX: string, ECOSTAR_SOURCE_API_URL: string, ECOSTAR_SOURCE_AUTH_TOKEN: string, BAPA_SITARAM_SOURCE_API_URL: string, BAPA_SITARAM_API_KEY: string, BAPA_SITARAM_STONE_NUMBER_PREFIX: string, RAPNET_API_CLIENT_ID: string, RAPNET_API_CLIENT_SECRET: string, RAPNET_API_GET_TOKEN_URL: string, RAPNET_API_GET_PRICE_LIST: string;
+export declare const APP_URL: string;
+export declare const INITIAL_ORDER_NUMBER: number;
+export declare const ORDER_NUMBER_PREFIX: string;

@@ -1,0 +1,36 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/admin
+#STG BASE URL : http://43.205.138.125:6002/api/v1/admin
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwYXNzd29yZHNoaGhoaCIsImlhdCI6MTcxNDYzNzkxOX0.W18soVCHY6IjEzx2f0DJmCtdy0MmQ4DDvF75NFVAQHo
+
+###
+# Get Diamond Source List
+GET {{ baseURL }}/diamond-source/list
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Enable/Disable Diamond Source Type
+# sourceType: (REQ) source type (String) (enum: maitri,anjali) [NOTE: This might change, keep it in sync. This is not for sourceType: File]
+# isDisabled: (REQ) enable or disable upload via source (Boolean)
+PUT {{ baseURL }}/diamond-source/active
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "sourceType": "maitri",
+    "isDisabled": false
+}
+
+###
+# Update Diamond Source Markup
+# source: (REQ) source type (String) (enum: maitri,anjali) [NOTE: sync with backend, this might change]
+# markupPercentage: (REQ) markup value in percentage (Number)
+PUT {{ baseURL }}/diamond-source/update-markup
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "sourceType": "file",
+    "markupPercentage": 100
+}

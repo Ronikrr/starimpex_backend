@@ -1,0 +1,130 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/admin
+#STG BASE URL : http://43.205.138.125:6002/api/v1/admin
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwYXNzd29yZHNoaGhoaCIsImlhdCI6MTcxNDYzNzkxOX0.W18soVCHY6IjEzx2f0DJmCtdy0MmQ4DDvF75NFVAQHo
+
+###
+# Get Diamond List (ALL QUERY PARAMS)
+# diamondType : (REQ) diamond type (string) (enum: natural_diamonds/lab_grown_diamonds)
+# shapeList :(OPT) list of shapes (array of string)
+# labList : (OPT) list of lab (array of string)
+# caratWeightList : (OPT) list of carat weight range (array)
+# colorList : (OPT) list of color (array of string)
+# noBGM : (OPT) is BGM (boolean)
+# isFancyColor : (OPT) is Fancy color (boolean)
+# fancyColorList : (OPT) list of fancy color (array of string)
+# fancyIntensityList : (OPT) list of fancy intensity (array of string)
+# fancyOvertoneList : (OPT) list of fancy overtone (array of string)
+# clarityList : (OPT) list of clarity (array of string)
+# cutList : (OPT) list of cut (array of string)
+# polishList : (OPT) list of polish (array of string)
+# symmetryList : (OPT) list of symmetry (array of string)
+# florescenceList : (OPT) list of florescence (array of string)
+# countryList : (OPT) list of country (array of string)
+# eyeCleanList : (OPT) list of eye clean (array of string) (enum: e0/e1/e2/e3)
+# typeList : (OPT) list of type (array of string) [NOTE: only for lab grown type] 
+# discountRange : (OPT) discount range (provide from and to value) (object with each of type number)
+# pricePerCaratRange : (OPT) price per carat range (provide from and to value) (object with each of type number)
+# totalPriceRange : (OPT) total price range (provide from and to value) (object with each of type number)
+# tablePercentageRange : (OPT) table percentage range (provide from and to value) (object with each of type number)
+# depthPercentageRange : (OPT) depth percentage range (provide from and to value) (object with each of type number)
+# lengthRange : (OPT) length  range (provide from and to value) (object with each of type number)
+# widthRange : (OPT) width range (provide from and to value) (object with each of type number)
+# ratioRange : (OPT) ratio range (provide from and to value) (object with each of type number)
+# crownHeightRange : (OPT) crown height range (provide from and to value) (object with each of type number)
+# crownAngleRange : (OPT) crown angle range (provide from and to value) (object with each of type number)
+# pavilionHeightRange : (OPT) pavilion height range (provide from and to value) (object with each of type number)
+# pavilionAngleRange : (OPT) pavilion angle range (provide from and to value) (object with each of type number)
+# girdlePercentageRange : (OPT) girdle percentage range (provide from and to value) (object with each of type number)
+# culetSizeList : (OPT) list of culet size (array of string) 
+# keyToSymbolIncludeList : (OPT) list of key to symbol whether diamond has key to symbol included (array of string)m(array of string) [NOTE: only for natural diamonds]
+# keyToSymbolExcludeList : (OPT) list of key to symbol whether diamond not has key to symbol included (array of string)m(array of string) [NOTE: only for natural diamonds]
+# skip : (OPT) number of records to skip (number)
+# limit : (OPT) number of records to fetch (number)
+# stoneIds : (OPT) stone nos (string) [You can pass multiple stone no, must be comma separated]# sortOrder: (OTP) sort order column wise (Object) [key with either 1(ascending) or -1(descending)]
+GET {{ baseURL }}/diamond/list?diamondType=lab_grown_diamonds&isFancyColor=false&shapeList=["round","radiant"]&caratWeightList=[{"from":"1"}]&stoneIds=3652254,3626716&sortOrder={"shape":-1}
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+#{
+#    "diamondType": "lab_grown_diamonds",
+#    "shapeList": ["round","radiant"],
+#    "labList": ["igi"],
+#    "caratWeightList": [{"from":0,"to":1}, {"from":2,"to": 4}],
+#    "colorList": ["h","i"],
+#    "noBGM": false,
+#    "fancyColorList": [],
+#    "fancyIntensityList": [],
+#    "fancyOvertoneList": [],
+#    "clarityList": ["vs1"],
+#    "cutList": ["id"],
+#    "polishList": ["ex"],
+#    "symmetryList": ["ex"],
+#    "florescenceList": ["none"],
+#    "countryList": ["india"],
+#    "eyeCleanList": ["e0","e1"],
+#    "typeList": ["cvd"],
+#    "discountRange": {"from":95,"to":100},
+#    "pricePerCaratRange": null,
+#    "totalPriceRange": {"from": 0, "to": 1000},
+#    "tablePercentageRange": {"from":0, "to":1000},
+#    "depthPercentageRange": {"from":0, "to":1000},
+#    "lengthRange": {"from":0, "to":1000},
+#    "widthRange": {"from":0, "to":1000},
+#    "ratioRange": {"from":0, "to":1000},
+#    "crownHeightRange": {"from":0, "to":1000},
+#    "crownAngleRange": {"from":0, "to":1000},
+#    "pavilionHeightRange": {"from":0, "to":1000},
+#    "pavilionAngleRange": {"from":0, "to":1000},
+#    "girdlePercentageRange": {"from":0, "to":1000},
+#    "culetSizeList": [],
+#    "keyToSymbolIncludeList": [],
+#    "keyToSymbolExcludeList": [],
+#    "limit": 10,
+#    "skip": 0
+#}
+
+###
+# Get Diamond
+# id: (REQ) (PARAMS) id of diamond (string)
+GET {{ baseURL }}/diamond/details/66432cc1cb36d9c546c9f737
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Export Stones details to excel
+# diamondIds: (REQ) diamonds Ids selected (array of string)
+POST {{baseURL}}/diamond/export
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "diamondIds": ["6654962d1eace07fd941d951"]
+}
+
+###
+# Send stone details mail
+# email: (REQ) user inputted email id (string)
+# diamondIds: (REQ) diamonds Ids selected (array of string)
+POST {{baseURL}}/diamond/send-excel-mail
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "email": "khushbupatel.mnjtech@gmail.com",
+    "diamondIds": ["6654962d1eace07fd941d951"]
+}
+
+###
+# Get Upload Sample file
+GET {{baseURL}}/diamond/upload-file/download
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Upload diamonds via file
+# file: Excel file (Containing headers same as given in sample with valid data) 
+# NOTE: REQUIRED DATA: Diamond Type, Stone No, Rap, Price/Carat, Discount, Price and Status [MIGHT CHANGE LATER]
+POST {{baseURL}}/diamond/upload-via-file
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}

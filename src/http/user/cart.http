@@ -1,0 +1,34 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ0YjA1NzA5MDFiZDUxODMxZDcxYjIiLCJpYXQiOjE3MTU3Nzc2ODN9.ckitilvBARUM3hg7KScb3KrAidjKz3_Wifj6ZXMhMpQ
+
+###
+# Add to cart
+# itemIds : (REQ) (PARAMS) ids of diamond (array of string)
+POST {{ baseURL }}/cart/add
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "itemIds":  ["66432cc1cb36d9c546c9f737","66432cc3cb36d9c546ca15d7","66432cc3cb36d9c546ca15d8"]
+}
+
+###
+# Delete cart item
+# itemIds : (REQ) (PARAMS) ids of diamond (array of string)
+DELETE  {{ baseURL }}/cart/remove
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "itemIds": ["66432cc1cb36d9c546c9f737","66432cc3cb36d9c546ca15d7","66432cc3cb36d9c546ca15d8","66432cc3cb36d9c546ca15d8"]
+}
+
+###
+# Get cart item list
+# skip : (REQ) (QUERY PARAMS) number of records to skip (number)
+# limit : (REQ) (QUERY PARAMS) number of records to fetch (number)
+GET  {{ baseURL }}/cart/list?skip=0&limit=10
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}

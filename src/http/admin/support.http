@@ -1,0 +1,76 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/admin
+#STG BASE URL : http://43.205.138.125:6002/api/v1/admin
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwYXNzd29yZHNoaGhoaCIsImlhdCI6MTcxNDYzNzkxOX0.W18soVCHY6IjEzx2f0DJmCtdy0MmQ4DDvF75NFVAQHo
+
+###
+# Get Contact List
+# skip : (OPT) (PARAMS) number of records to skip (Number)
+# limit : (OPT) (PARAMS) number of records per page (Number)
+# search : (OPT) (PARAMS) search by firstname, lastname, email, phone, country (String)
+# status : (OPT) (PARAMS) filter list by status (enum : pending/resolved/closed) (String)
+GET {{ baseURL }}/support/contact/list?skip=0&limit=10&status=pending&search=india
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get Inquiry List
+# skip : (OPT) (PARAMS) number of records to skip (Number)
+# limit : (OPT) (PARAMS) number of records per page (Number)
+# search : (OPT) (PARAMS) search by firstname, lastname, email, phone, country, company name (String)
+# status : (OPT) (PARAMS) filter list by status (enum : pending/resolved/closed) (String)
+GET {{ baseURL }}/support/inquiry/list?skip=0&limit=10&status=pending&search=john
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get Feedback List
+# skip : (OPT) (PARAMS) number of records to skip (Number)
+# limit : (OPT) (PARAMS) number of records per page (Number)
+# user : (OPT) (PARAMS) filter list by user (String)
+GET {{ baseURL }}/support/feedback/list?skip=0&limit=10&user=6644b0570901bd51831d71b2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get Customer Query List
+# skip : (OPT) (PARAMS) number of records to skip (Number)
+# limit : (OPT) (PARAMS) number of records per page (Number)
+# user : (OPT) (PARAMS) filter list by user (String)
+# status : (OPT) (PARAMS) filter list by status (enum : pending/resolved/closed) (String)
+GET {{ baseURL }}/support/help/list?skip=0&limit=10&status=pending&user=6644b0570901bd51831d71b2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Change Contact Request Status
+# status : (REQ) status (enum : pending/resolved/closed) (String)
+PUT {{ baseURL }}/support/contact/change-status/6644b0570901bd51831d71b2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "status": "resolved"
+}
+
+###
+# Change Inquiry Request Status
+# status : (REQ) status (enum : pending/resolved/closed) (String)
+PUT {{ baseURL }}/support/inquiry/change-status/6644b0570901bd51831d71b2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "status": "resolved"
+}
+
+###
+# Change Customer Query Request Status
+# status : (REQ) status (enum : pending/resolved/closed) (String)
+PUT {{ baseURL }}/support/help/change-status/6644b0570901bd51831d71b2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "status": "resolved"
+}

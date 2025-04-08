@@ -1,0 +1,54 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ0YjA1NzA5MDFiZDUxODMxZDcxYjIiLCJpYXQiOjE3MTU3Nzc2ODN9.ckitilvBARUM3hg7KScb3KrAidjKz3_Wifj6ZXMhMpQ
+
+###
+# Create Order
+# items: (REQ) array of diamond id (Array)
+# remarks: (OPT) remarks provided by user (string)
+# isTermsAccepted: (OPT) user has read and accepted terms or not (boolean)
+POST {{ baseURL }}/order/create
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "items": ["66432ae3cb36d9c546c99f48","66432a6ccb36d9c546c99ee7"],
+    "remarks": "test",
+    "isTermsAccepted": false
+}
+
+###
+# Get My Order list
+# skip : (OPT) (QUERY PARAMS) no of records to be skipped (number)
+# limit : (OPT) (QUERY PARAMS) total records (number)
+# orderNumber : (OPT) (QUERY PARAMS) order number (string)
+# fromOrderDate : (OPT) (QUERY PARAMS) from order date (date string)
+# toOrderDate : (OPT) (QUERY PARAMS) to order date (date string)
+# fromAmount : (OPT) (QUERY PARAMS) from amount (number)
+# toAmount : (OPT) (QUERY PARAMS) to amount (number)
+# fromTotalItems : (OPT) (QUERY PARAMS) from total stones (number)
+# toTotalItems : (OPT) (QUERY PARAMS) to total stones (number)
+# fromCarats : (OPT) (QUERY PARAMS) from carats (number)
+# toCarats : (OPT) (QUERY PARAMS) to carats (number)
+GET {{ baseURL }}/order/list?skip=4&limit=10
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get My Order details
+# id: (REQ) (PARAMS) id of order (string)
+GET {{ baseURL }}/order/details/6656e2d96a38b229bf56f031
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Export Order stone details to excel
+# orderIds: (REQ) order Ids selected (array of string)
+POST {{baseURL}}/order/export
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "orderIds": ["6654962d1eace07fd941d951"]
+}

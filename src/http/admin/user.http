@@ -1,0 +1,63 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/admin
+#STG BASE URL : http://43.205.138.125:6002/api/v1/admin
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzMzODI0ODYzLCJleHAiOjE3MzM5MTEyNjN9.gzsgZKDUCy6VUkd0nA2at9HPWk7Rivl8MID3B0J3LJ0
+###
+# Get User List
+# skip : (OPT) (PARAMS) number of records to skip (Number)
+# limit : (OPT) (PARAMS) number of records per page (Number)
+GET {{ baseURL }}/user/list?skip=0&limit=10
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Change User Status
+# id : (REQ) (PARAMS)
+# status : (REQ) status to be assigned to user (enum: pending/approved/disapproved)
+PUT {{ baseURL }}/user/change-status/663342561fde18297a408bc1
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "status": "approved"
+}
+
+###
+# Get User
+# userId : (REQ) (PARAMS) user id (String)
+GET {{ baseURL }}/user/66475a83509e8522a32366a3
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get User cart history
+# skip : (OPT) number of records to skip (number)
+# limit : (OPT) number of records to fetch (number)
+# fromDate : (OPT) from search date (DateString)
+# toDate : (OPT)  to search date (DateString)
+GET {{ baseURL }}/user/cart-history?skip=0&limit=10?skip=0&limit=10&fromDate=2024-07-09T00:00:00.000Z&toDate=2024-07-09T23:59:59.999Z
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get User price track history
+# skip : (OPT) number of records to skip (number)
+# limit : (OPT) number of records to fetch (number)
+# fromDate : (OPT) from search date (DateString)
+# toDate : (OPT)  to search date (DateString)
+GET {{ baseURL }}/user/price-track-history?skip=0&limit=10&fromDate=2024-07-09T00:00:00.000Z&toDate=2024-07-09T23:59:59.999Z
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+
+###
+# Admin Change User Password
+# userId : (REQ) (PARAMS) user id (String)
+# password : (REQ) new password for user
+PUT  {{ baseURL }}/user/change-password/6757fc0e2be686872551c378
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "password": "test12"
+}

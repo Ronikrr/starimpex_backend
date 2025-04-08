@@ -1,0 +1,34 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ3NWE4MzUwOWU4NTIyYTMyMzY2YTMiLCJpYXQiOjE3MTgwOTczNDl9.kQ-Y3qvqU09u0w7ZVbgcTDN1e5CcZ0AbEfGR0UHoQ3w
+
+###
+# Price Tracker
+# diamondIds : (REQ) (PARAMS) ids of diamond (array of string)
+POST {{ baseURL }}/price-track/add
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "diamondIds":  ["665ed3192618cadffe84fe16"]
+}
+
+###
+# Get price track list
+# skip : (REQ) (QUERY PARAMS) number of records to skip (number)
+# limit : (REQ) (QUERY PARAMS) number of records to fetch (number)
+GET  {{ baseURL }}/price-track/list?skip=0&limit=10
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Remove from price tracker
+# diamondIds : (REQ) (PARAMS) ids of diamond (array of string)
+DELETE  {{ baseURL }}/price-track/remove
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "diamondIds": ["665ed3192618cadffe84fe16"]
+}

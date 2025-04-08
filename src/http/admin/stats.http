@@ -1,0 +1,14 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/admin
+#STG BASE URL : http://43.205.138.125:6002/api/v1/admin
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwYXNzd29yZHNoaGhoaCIsImlhdCI6MTcxNDYzNzkxOX0.W18soVCHY6IjEzx2f0DJmCtdy0MmQ4DDvF75NFVAQHo
+
+###
+# Search stats
+# skip : (OPT) number of records to skip (number)
+# limit : (OPT) number of records to fetch (number)
+# fromDate : (OPT) from search date (DateString)
+# toDate : (OPT)  to search date (DateString)
+GET {{ baseURL }}/stats/diamond-search?skip=0&limit=10
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}

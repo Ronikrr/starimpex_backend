@@ -1,0 +1,167 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/admin
+#STG BASE URL : http://43.205.138.125:6002/api/v1/admin
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJwYXNzd29yZHNoaGhoIiwiaWF0IjoxNzIxOTEzMjk2LCJleHAiOjE3MjE5OTk2OTZ9.EMFVolgjENvbnSreiDc58NlkWRXEfEpOZYNGrz_z9aM
+
+###
+# Get User Order list
+# skip : (OPT) (QUERY PARAMS) no of records to be skipped (number)
+# limit : (OPT) (QUERY PARAMS) total records (number)
+# orderNumber : (OPT) (QUERY PARAMS) order number (string)
+# fromOrderDate : (OPT) (QUERY PARAMS) from order date (date string)
+# toOrderDate : (OPT) (QUERY PARAMS) to order date (date string)
+# fromAmount : (OPT) (QUERY PARAMS) from amount (number)
+# toAmount : (OPT) (QUERY PARAMS) to amount (number)
+# fromTotalItems : (OPT) (QUERY PARAMS) from total stones (number)
+# toTotalItems : (OPT) (QUERY PARAMS) to total stones (number)
+# fromCarats : (OPT) (QUERY PARAMS) from carats (number)
+# toCarats : (OPT) (QUERY PARAMS) to carats (number)
+GET {{ baseURL }}/order/list?skip=0&limit=10
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Get User Order details
+# id: (REQ) (PARAMS) id of order (string)
+GET {{ baseURL }}/order/details/66a0bcab30a05d8dc5869ac2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Change Order Status
+# id: (REQ) (PARAMS) id of order (string)
+# status: (REQ) order status (string) (ENUM: pending/confirm/partially_confirm/canceled)
+PUT {{ baseURL }}/order/change-status/664f4c2c66c8513ed96b05ac
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "status": "partially_confirm",
+    "items": [
+        {
+          "itemId": "66432a6ccb36d9c546c99ee7",
+          "isConfirmed": true
+        },
+        {
+          "itemId": "66432ae3cb36d9c546c99f48",
+          "isConfirmed": false
+        }
+    ]
+}
+
+###
+# Order Update Additional Charges
+# id: (REQ) (PARAMS) id of order (string)
+# shippingCharge: (REQ) shipping charge amount (number)
+# additionalCharges: (OPT) additional charges (Array => {amount: number,description:string}) 
+PUT {{ baseURL }}/order/additional-charges/664dd6cf582aba26e4012bc2
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "shippingCharge": 10.99,
+    "additionalCharges": [
+        {"amount": 10.99,"description": "test"},
+        {"amount": -5.99,"description": "test"}
+    ]
+}
+
+###
+# Export Order stone details to excel
+# orderIds: (OPT) order Ids selected (array of string)
+POST {{baseURL}}/order/export
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "orderIds": ["6654962d1eace07fd941d951"]
+}
+
+
+###
+# Get order items by order number
+# orderNumber: (REQ) (PARAMS) order number (string)
+GET {{ baseURL }}/order/order-items/ord1100
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+###
+# Manual Add Order
+# orderDate: (REQ) order date (Date String)
+# companyName: (REQ) company name (String)
+# companyEmail: (OPT) company email (String) [Note: Should be not empty or don't send in data]
+# description: (OPT) description (String) [Note: Should be not empty or don't send in data]
+# orderItem: (REQ) items containing following details [Array]
+    # stoneNo : (REQ) stone no (String)
+    # lab : (OPT) lab (String)
+    # shape : (OPT) shape (String)
+    # type : (OPT) type (String)
+    # rap : (REQ) rap (Number)
+    # ourDiscount : (REQ) dicount (Number)
+    # pricePerCarat : (REQ) price per carat (Number)
+    # ourPrice : (REQ) total price (Number)
+    # caratWeight : (REQ) carat weight (Number)
+POST {{ baseURL }}/order/manual/add
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+"orderDate": "2024-07-10T10:10:10.000Z",
+  "companyName": "TECH1",
+  "companyEmail": "techtest@gmail.com",
+  "description": "test",
+  "orderItems": [
+    {
+      "stoneNo": "001939393",
+      "lab": "igi",
+      "shape": "heart",
+      "type": "cvd",
+      "rap": 0,
+      "ourDiscount": 0,
+      "pricePerCarat": 0,
+      "ourPrice": 0,
+      "caratWeight": 1.07
+    }
+  ]
+}
+
+###
+# Manual Update Order [NOTE: Only manual order can be updated]
+# orderId: (REQ) order id (String)
+# orderDate: (REQ) order date (Date String)
+# companyName: (REQ) company name (String)
+# companyEmail: (OPT) company email (String) [Note: Should be not empty or don't send in data]
+# description: (OPT) description (String) [Note: Should be not empty or don't send in data]
+# orderItem: (REQ) items containing following details [Array]
+    # stoneNo : (REQ) stone no (String)
+    # lab : (OPT) lab (String)
+    # shape : (OPT) shape (String)
+    # type : (OPT) type (String)
+    # rap : (REQ) rap (Number)
+    # ourDiscount : (REQ) dicount (Number)
+    # pricePerCarat : (REQ) price per carat (Number)
+    # ourPrice : (REQ) total price (Number)
+    # caratWeight : (REQ) carat weight (Number)
+PUT {{ baseURL }}/order/manual/update/66a37180169e026215598aea
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+  "orderDate": "2024-07-10T10:10:10.000Z",
+  "companyName": "TECH1",
+  "companyEmail": "techtest@gmail.com",
+  "description": "test",
+  "orderItems": [
+    {
+      "stoneNo": "001939393",
+      "lab": "igi",
+      "shape": "heart",
+      "type": "cvd",
+      "rap": 7000,
+      "ourDiscount": -98.00,
+      "pricePerCarat": 5000,
+      "ourPrice": 64.75,
+      "caratWeight": 1.07
+    }
+  ]
+}

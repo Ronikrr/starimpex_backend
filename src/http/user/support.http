@@ -1,0 +1,70 @@
+# baseURL
+@baseURL = http://localhost:3000/api/v1/user
+#STG BASE URL : http://43.205.138.125:6002/api/v1/user
+@AuthorizationToken = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ0YjA1NzA5MDFiZDUxODMxZDcxYjIiLCJpYXQiOjE3MTU3Nzc2ODN9.ckitilvBARUM3hg7KScb3KrAidjKz3_Wifj6ZXMhMpQ
+
+###
+# Contact us
+# firstName: (REQ) first name of user (String) 
+# lastName: (REQ) last name of user (String) 
+# email: (REQ) email id of user (String) 
+# phone: (OPT) contact number of user (String) 
+# contry: (REQ) country name (String) 
+# message: (REQ) message from user (String) 
+POST {{ baseURL }}/support/contact
+Content-Type: application/json
+
+{
+    "firstName": "john",
+    "lastName": "doe",
+    "email": "khushbupatel.mnjtech@gmail.com",
+    "country": "India",
+    "message": "message"
+}
+
+###
+# Inquiry
+# firstName: (REQ) first name of user (String) 
+# lastName: (REQ) last name of user (String) 
+# email: (REQ) email id of user (String) 
+# phone: (OPT) contact number of user (String) 
+# contry: (REQ) country name (String) 
+# message: (REQ) message from user (String) 
+# diamondType: (OPT) diamond type (String) (Enum: natural_diamonds,lab_grown_diamonds_cvd,lab_grown_diamonds_hpht)
+# companyName: (OPT) message from user (String) 
+POST {{ baseURL }}/support/inquiry
+Content-Type: application/json
+
+{
+    "firstName": "john",
+    "lastName": "doe",
+    "email": "khushbupatel.mnjtech@gmail.com",
+    "country": "India",
+    "message": "message",
+    "diamondType": "natural_diamonds",
+    "companyName": "xyz"
+}
+
+###
+# Feedback
+# rating: (REQ) rating from 1 to 5 (Number) 
+# comment: (OTP) comment from user (String)
+POST {{ baseURL }}/support/feedback
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "rating": 4,
+    "comment": ""
+}
+
+###
+# Help 
+# message: (OTP) comment from user (String)
+POST {{ baseURL }}/support/help
+Content-Type: application/json
+Authorization: {{AuthorizationToken}}
+
+{
+    "message": "message"
+}
